@@ -1,13 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500&display=swap');
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'Spartan', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: #f8efd4; */
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.formval {
+  width: 25rem;
+  margin: 2em;
+}
+.clr {
+  color: #810000;
+}
+.clr:hover{
+  color: #810000;
+}
+.bclr {
+  background-color: #810000;
+  color: white;
+}
+.bclr:hover {
+  background-color: #810000;
+  color: white;
 }

@@ -1,20 +1,24 @@
 import React,{lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-import './App.css';
+import {ToastContainer} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
-const Nav =  lazy(() => import("./components/Nav"));
+const Login =  lazy(() => import("./components/Login"));
+const Register =  lazy(() => import("./components/Register"));
 const Home =  lazy(() => import("./components/Home"));
 
 function App() {
   return (
     <Suspense fallback={
-      <div class="cssload-container text-center">
-        <div class="cssload-whirlpool"></div>
+      <div className="cssload-container text-center">
+        <div className="cssload-whirlpool"></div>
       </div>
     }>
-      <Nav />
+    <ToastContainer />
       <Switch>
-        <Route exact path="/" component={Home} />
+      <Route exact path="/home" component={Home} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/" component={Login} />
       </Switch>
     </Suspense>
   );
