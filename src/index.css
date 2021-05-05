@@ -26,3 +26,20 @@ body {
   background-color: #810000;
   color: white;
 }
+.box {
+  border: 3px solid #810000;
+  border-radius: 5px;
+  width: 30em;
+  min-height: 20em;
+  text-align: center;
+}
+.bb {
+  display: flex;
+  justify-content: center;
+}
+.point {
+  cursor: pointer;
+}
+.logoutbtn {
+  border: none;
+}

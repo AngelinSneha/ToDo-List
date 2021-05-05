@@ -3,8 +3,10 @@ import TextField from '@material-ui/core/TextField';
 import {Link} from "react-router-dom"
 import {loginFc} from "../functions/auth";
 import {toast} from 'react-toastify';
+import {useDispatch} from "react-redux";
 
 function Login({history}) {
+    const dispatch = useDispatch();
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
 
@@ -17,7 +19,16 @@ function Login({history}) {
         // console.log('i am clicked')
         const val = await loginFc(email, password)
         .then(res => {
-            console.log("res",res.data)
+            console.log("res",res.data.type);
+            localStorage.setItem('email', email);
+            localStorage.setItem('token', res.data.type+" "+res.data.token);
+            dispatch({
+                type:'LOGGED_IN_USER',
+                payload: {
+                    email:email,
+                    token:res.data.type+" "+res.data.token
+                }
+            })
             toast.success("Logged in Successfully!")
             history.push("/home")
         })
