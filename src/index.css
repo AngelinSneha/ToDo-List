@@ -30,12 +30,8 @@ body {
   border: 3px solid #810000;
   border-radius: 5px;
   width: 30em;
-  min-height: 20em;
+  min-height: 23em;
   text-align: center;
-}
-.bb {
-  display: flex;
-  justify-content: center;
 }
 .point {
   cursor: pointer;

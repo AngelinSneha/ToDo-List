@@ -19,3 +19,11 @@ export const logout = async(authtoken) => {
     })
     return res
 }
+export const user = async(authtoken, email) => {
+    const res = await axios.post(`${process.env.REACT_APP_API}/api/user`, {email}, {
+        headers: {
+            Authorization:authtoken
+        }
+    })
+    return res
+}
