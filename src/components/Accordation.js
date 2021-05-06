@@ -3,21 +3,27 @@ import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {list} from "../functions/todo"
 import { user } from '../functions/auth';
+import AccordionActions from '@material-ui/core/AccordionActions';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import { toast } from 'react-toastify';
+import {updatedone, updateundone} from "../functions/todo"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     marginBottom:"0.3em"
   },
-});
+  heading: {
+    fontSize: theme.typography.pxToRem(17),
+    fontWeight: theme.typography.fontWeightBold,
+  }
+}));
 
-function Accordation({todos}) {
+function Accordation({todos, handleDelete}) {
   const classes = useStyles();
   const [userId, setuserId] = useState(0);
   const email  = localStorage.getItem("email");
@@ -27,21 +33,36 @@ function Accordation({todos}) {
       const value = async () => {
         await user(token, email)
         .then((res) => {
-            console.log('user', res.data)
             setuserId(res.data.id);
-            console.log('user id', userId)
         })
-        .catch(err => {
-            console.log("Cannot get user")
+        .catch((err) => {
+            console.log("Cannot get user", err)
         })
       }
       value()
-  }, [userId])
+  }, [userId]);
 
-  const handleCheckBox = () => {
-      console.log("CheckBox Clicked")
+  //marking the task as done
+  const handleCheckBox = async (id) => {
+      await updatedone(token, id)
+      .then(res => {
+        toast.success('Congratulations on completing your task!')
+      })
+      .catch(err => {
+          toast.error("Sorry! we could not update your action")
+      })
   }
-  console.log('acordation', todos)
+
+  //marking the task as undone
+  const handleCheckBoxundo = async (id) => {
+    await updateundone(token, id)
+    .then(res => {
+      toast.success('Your task has been marked UnDone!')
+    })
+    .catch(err => {
+        toast.error("Sorry! we could not update your action")
+    })
+}
 
   return (
       <>
@@ -55,23 +76,34 @@ function Accordation({todos}) {
                 aria-controls="additional-actions1-content"
                 id="additional-actions1-header"
                 >
-                <FormControlLabel
-                    aria-label="Acknowledge"
-                    onClick={handleCheckBox}
-                    onFocus={(event) => event.stopPropagation()}
-                    control={<Checkbox />}
-                    label={list.title}
-                />
+                <Typography className={classes.heading}>{list.title}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography color="textSecondary">
-                    {list.body?list.body:(<i className="text-danger">You have not added a comment!</i>)}
+                    {list.body?
+                    <spam>
+                        {list.body}
+                    </spam>
+                    :
+                    (<>
+                        <i className="text-danger">You have not added a comment!</i>
+                    </>
+                    )}
                 </Typography>
                 </AccordionDetails>
+                <Divider />
+                <AccordionActions>
+                <Button size="small" className="clr text-danger" onClick={(e) => handleDelete(list.id)}>Delete</Button>
+                {(list.is_completed == 0)?(<Button size="small" className="text-success" onClick={e => handleCheckBox(list.id)} >
+                    Done
+                </Button>):<Button size="small" className="text-success" onClick={(e) => handleCheckBoxundo(list.id)} >
+                    UNDO
+                </Button>}
+                </AccordionActions>
             </Accordion>
         </div>
     )
-    ):(<div>Your List is empty!</div>)}
+    ):(<div className="text-center">Your List is empty!</div>)}
     </>
   );
 }

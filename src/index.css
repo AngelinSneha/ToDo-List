@@ -6,7 +6,6 @@ body {
     font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #f8efd4; */
 }
 .formval {
   width: 25rem;
@@ -29,12 +28,14 @@ body {
 .box {
   border: 3px solid #810000;
   border-radius: 5px;
-  width: 30em;
   min-height: 23em;
   text-align: center;
 }
 .point {
   cursor: pointer;
+}
+.bgwt {
+  background-color: white;
 }
 .logoutbtn {
   border: none;

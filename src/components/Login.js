@@ -10,16 +10,11 @@ function Login({history}) {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
 
-    // useEffect(() => {
-    //     console.log('email', email, 'password', password, 'confirmPassword')
-    // }, [email, password]);
-
+    //submit login form
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log('i am clicked')
         const val = await loginFc(email, password)
         .then(res => {
-            console.log("res",res.data.type);
             localStorage.setItem('email', email);
             localStorage.setItem('token', res.data.type+" "+res.data.token);
             dispatch({

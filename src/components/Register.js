@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import TextField from '@material-ui/core/TextField';
 import {Link} from "react-router-dom";
 import {reg} from "../functions/auth" ;
@@ -10,16 +10,12 @@ function Register({history}) {
     const [password, setpassword] = useState('');
     const [password_confirmation, setconfirmPassword] = useState('');
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     console.log('email', email, 'password', password, 'confirmPassword', password_confirmation)
-    // }, [email, password, password_confirmation]);
 
+    //submi register form
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const res = await reg(email, password, password_confirmation)
-            console.log("res", res.data);
-            console.log("res",res.data.type);
             localStorage.setItem('email', email);
             localStorage.setItem('token', res.data);
             dispatch({
