@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 function NewNote({value, setvalue, multilineValue, setmultilineValue, handleSubmit}) {
     return (
         <form onSubmit={handleSubmit} className="mt-4">
-            <TextField variant="outlined" label="Add a Title" className="m-2 wdt" value={value} onChange={(e) => setvalue(e.target.value)} />
+            <TextField required variant="outlined" label="Add a Title" className="m-2 wdt" value={value} onChange={(e) => setvalue(e.target.value)} />
             <br />
             <TextField
                 className="m-2 wdt"

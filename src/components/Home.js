@@ -4,9 +4,9 @@ import {list} from "../functions/todo";
 import {toast} from 'react-toastify';
 import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom";
-import Nav from './Nav';
-import Accordation from './Accordation';
-import NewNote from './NewNote';
+import Nav from './home/Nav';
+import Accordation from './home/Accordation';
+import NewNote from './home/NewNote';
 import {addToList, deleteList} from "../functions/todo";
 
 function Home({history}) {

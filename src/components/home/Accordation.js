@@ -5,12 +5,12 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { user } from '../functions/auth';
+import { user } from '../../functions/auth';
 import AccordionActions from '@material-ui/core/AccordionActions';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { toast } from 'react-toastify';
-import {updatedone, updateundone} from "../functions/todo"
+import {updatedone, updateundone} from "../../functions/todo"
 
 const useStyles = makeStyles((theme) => ({
   root: {
