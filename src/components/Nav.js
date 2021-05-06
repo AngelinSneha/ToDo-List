@@ -5,9 +5,9 @@ function Nav({handleLogout}) {
     return (
         <div className="bclr p-4 pl-5">
             <form onSubmit={handleLogout} className="float-right" >
-            <button onClick={handleLogout} className="bclr point logoutbtn"><ExitToAppIcon fontSize="small" /> <span className="h6">Logout</span></button>
+            <button onClick={handleLogout} className="bclr point logoutbtn"><ExitToAppIcon fontSize="small" /> <span className="h5">Logout</span></button>
             </form>
-            <span className="h4">📝ToDo List</span>
+            <span className="h3">📝ToDo List</span>
         </div>
     )
 }
